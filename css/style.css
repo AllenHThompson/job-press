@@ -1,0 +1,103 @@
+#results{
+  /*position: absolute;*/
+  margin-top: 3.5%;
+  margin-left: 2%;
+  height: 100%;
+  width: 30%;
+  /*float: left;*/
+  position: absolute;
+  overflow: auto;
+  box-sizing: border-box;
+  top: 0;
+  left: 0;
+  white-space: wrap;
+}
+#tabs{
+  width: 30%;
+}
+.container{
+  overflow: auto;
+}
+#map{
+  left: 30%;
+  height: 100%;
+  width: 75%;
+  position: absolute;
+}
+
+
+
+
+body{
+  /*background-image: url("restaurant.png");*/
+  background-color: #f9f7f1;
+}
+
+/*.button {
+position: absolute;
+top: 50%;
+}*/
+
+.savedJobs{
+  margin-top: 4%;
+  margin-left: 2%;
+}
+
+.homepage{
+  font-family: 'Droid Serif', serif;
+  font-size: 14px;
+  color: #2f2f2f;
+  background-color: #f9f7f1;
+}
+.weatherforcastbox{
+  margin-top: 1%;
+  margin-left: 1%;
+}
+.header{
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 40px;
+  text-transform: uppercase;
+  display: inline-block;
+  line-height: 72px;
+  margin-bottom: 7px;
+  margin-left: -270px;
+}
+
+.wrapper{
+  text-align: center;
+}
+.titleAuthor{
+  text-align: center;"
+}
+.panel-heading {
+    text-align: center;
+}
+.panel > .panel-heading {
+    background-color: black;
+    color: white;
+    font-size: 3em;
+
+}
+.panel > .panel-body{
+   background-color: #f9f7f1;
+   text-align: center;
+}
+
+#results{
+  margin-top: 41px;
+    margin-left: -2px;
+}
+.companyInfo{
+  margin-left: -239;
+}
+li{
+  list-style: none;
+  text-align: center;
+}
+#saveBtn{
+  margin-left: 10%;
+}
+.companyInfo{
+  text-align: center;
+}

@@ -1,0 +1,35 @@
+<style>
+
+   </style>
+
+<div ng-controller="JobSearch">
+     <ul class="nav nav-tabs" id="tabs">
+       <li role="presentation" class="active"><a href="#/">Home</a></li>
+       <li role="presentation"><a href="#/savedJobs">Saved Jobs</a></li>
+     </ul>
+     <div id="results" class="panel panel-default">
+       <div class="panel-heading"><span>Extra! Extra!</span>
+        <br><span style="font-weight: bolder;">Help Wanted</span></div>
+        <div class="panel-body" ng-repeat="job in allResultsList">
+          <div class="companyInfo">
+               <p>Company Name: {{job.MatchedObjectDescriptor.OrganizationName}}</p>
+               <p>Department: {{job.MatchedObjectDescriptor.DepartmentName}}</p>
+               <p>Type: {{job.MatchedObjectDescriptor.PositionOfferingType[0].Name}}</p>
+               <p>Salary: ${{job.MatchedObjectDescriptor.PositionRemuneration[0].MinimumRange}} - ${{job.MatchedObjectDescriptor.PositionRemuneration[0].MaximumRange}} </p>
+               <ul>
+                  <li ng-repeat="loc in job.MatchedObjectDescriptor.PositionLocation" style="">
+                    {{loc.LocationName}}
+                  </li>
+               </ul>
+               <button id="saveBtn" class="btn btn-primary" ng-click="saveJobBtn(job)">Save Job</button>
+               <hr>
+             </div>
+          </div>
+     </div>
+
+
+  <div class="container">
+    <div id="map">
+    </div>
+  </div>
+</div>
