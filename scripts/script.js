@@ -6,52 +6,52 @@ var savedJobs = [];
 
 /****************** Services ******************/
 app.factory('jobSearchService', function($http){
-  return{
-    getListOfJobs: function(callback){
-      $http({
-        url: 'https://data.usajobs.gov/api/search',
-        params: {
-          //Keyword: "developer",
-          JobCategoryCode: 2210,
-          LocationName: 'Atlanta, Georgia'
-        },
-        headers: {
-          //'User-Agent': 'allenhthompson1@gmail.com',
-          'Authorization-Key': 'MfbLK4LehC6CQvAg3U9nr2Y0nBS5IHnMJjPK+KuoWbM='
-        }
-      }).success(callback);
-    } // end getListOfJobs method
-  }; // end return
+     return{
+          getListOfJobs: function(callback){
+               $http({
+                    url: 'https://data.usajobs.gov/api/search',
+                    params: {
+                         //Keyword: "developer",
+                         JobCategoryCode: 2210,
+                         LocationName: 'Atlanta, Georgia'
+                    },
+                    headers: {
+                         //'User-Agent': 'allenhthompson1@gmail.com',
+                         'Authorization-Key': 'MfbLK4LehC6CQvAg3U9nr2Y0nBS5IHnMJjPK+KuoWbM='
+                    }
+               }).success(callback);
+          } // end getListOfJobs method
+     }; // end return
 }); // end jobSearchService factory
 
 app.factory('weatherService', function($http){
-  var APPID = '0eec4393061dd3bf6597febdb72c50c4';
-  return {
-    getByCityID: function(callback){
-      $http({
-        url: 'http://api.openweathermap.org/data/2.5/weather',
-        params: {
-          q: 'Atlanta',
-          units: 'imperial',
-          APPID: APPID
-        }
-      }).success(callback);
-    } // end getByCityID method
-  }; // end return
+     var APPID = '0eec4393061dd3bf6597febdb72c50c4';
+     return {
+          getByCityID: function(callback){
+               $http({
+                    url: 'http://api.openweathermap.org/data/2.5/weather',
+                    params: {
+                         q: 'Atlanta',
+                         units: 'imperial',
+                         APPID: APPID
+                    }
+               }).success(callback);
+          } // end getByCityID method
+     }; // end return
 }); // end app.factory(weatherService)
 
 
 
 // main controller
 app.controller('MainController', function($scope, jobSearchService, googleMap){
-  jobSearchService.getListOfJobs(function(data){
-    // returns the first 25 results
-    $scope.allResultsList = data.SearchResult.SearchResultItems;
-    //console.log($scope.allResultsList);
+     jobSearchService.getListOfJobs(function(data){
+          // returns the first 25 results
+          $scope.allResultsList = data.SearchResult.SearchResultItems;
+          //console.log($scope.allResultsList);
 
-    // call to the google service plot jobs location on map
-    googleMap.plotData($scope.allResultsList);
-  });
+          // call to the google service plot jobs location on map
+          googleMap.plotData($scope.allResultsList);
+     });
 });
 /**** Config: Switch between pages ****/
 app.config(function($routeProvider) {
@@ -73,30 +73,30 @@ app.config(function($routeProvider) {
 
 
 app.controller('SaveJobs', function($scope, $http){
-  $scope.savedJobs = savedJobs;
-  $scope.deleteJobBtn = function(index){
-    $scope.savedJobs.splice(index,1);
-    //console.log($scope.savedJobs);
-  };
+     $scope.savedJobs = savedJobs;
+     $scope.deleteJobBtn = function(index){
+          $scope.savedJobs.splice(index,1);
+          //console.log($scope.savedJobs);
+     };
 });
 
 app.controller('HomePage', function($scope, $http, $location, weatherService){
-  var d = new Date();
-  document.getElementById("displayDate").innerHTML = d.toDateString();
+     var d = new Date();
+     document.getElementById("displayDate").innerHTML = d.toDateString();
 
      $scope.searchJobs = function() {
           $location.path('/search/' + $scope.keyword + '/' + $scope.location);
      };
      weatherService.getByCityID(function(data){
-         $scope.data = data;
-         console.log($scope.data);
+          $scope.data = data;
+          console.log($scope.data);
      });
 
 
 });
 
 app.controller('JobSearch', function($scope, $http, $routeParams){
-  var infoWindow = new google.maps.InfoWindow();
+     var infoWindow = new google.maps.InfoWindow();
 
      // $scope.message = 'Test message.';//this line just checking connectivity
 
@@ -115,7 +115,7 @@ app.controller('JobSearch', function($scope, $http, $routeParams){
                return true;
           } else if (location.LocationName.indexOf("Negotiable")){
                return true;
-          }     
+          }
           return false;
      }
      $scope.openInfoWindow = function(job){
@@ -188,7 +188,7 @@ app.controller('JobSearch', function($scope, $http, $routeParams){
                     var contentString = '<a href =' + job.MatchedObjectDescriptor.PositionURI + '>Apply To This Job</a>' + '<h5>' + job.MatchedObjectDescriptor.PositionTitle + '</h5>' + job.MatchedObjectDescriptor.PositionTitle + '</h5>';
 
                     marker.addListener('click', function() {
-                        infoWindow.setContent('<a target="_blank" href =' + job.MatchedObjectDescriptor.PositionURI + '>Apply To This Job</a>' + '<h5>' + job.MatchedObjectDescriptor.PositionTitle + '</h5>');
+                         infoWindow.setContent('<a target="_blank" href =' + job.MatchedObjectDescriptor.PositionURI + '>Apply To This Job</a>' + '<h5>' + job.MatchedObjectDescriptor.PositionTitle + '</h5>');
                          infoWindow.open(map, marker);
                     });
                     //REMOVE THE CODE BELOW
@@ -208,11 +208,11 @@ app.controller('JobSearch', function($scope, $http, $routeParams){
      var lat = 0;
      var lng = 0;
      if (location === "Atlanta") {
-           lat = 33.748995;
-           lng = -84.387982;
+          lat = 33.748995;
+          lng = -84.387982;
      } else if(location === "Philidelphia") {
-           lat = 39.952584;
-           lng = -75.165222;
+          lat = 39.952584;
+          lng = -75.165222;
      } else if (location === "Chicago") {
 
           lat = 41.878114;
@@ -240,18 +240,6 @@ app.controller('JobSearch', function($scope, $http, $routeParams){
           lng = -121.468926;
      }
 
-
-
-
-
-
-
-
-
-
-
-
-
      else {
           lat = 1
           lng = -1;
@@ -270,13 +258,13 @@ app.controller('JobSearch', function($scope, $http, $routeParams){
      var map = new google.maps.Map(document.getElementById('map'), mapOtions);
 
 
-  $scope.saveJobBtn = function(job){
-    if (savedJobs.indexOf(job) === -1) {
-      savedJobs.push(job);
-    }
+     $scope.saveJobBtn = function(job){
+          if (savedJobs.indexOf(job) === -1) {
+               savedJobs.push(job);
+          }
 
-    // $scope.jobcomments = $cookies.get('jobcomments');
-    // $cookies.put('jobcomments', job);
-    //console.log(savedJobs);
-  };
+          // $scope.jobcomments = $cookies.get('jobcomments');
+          // $cookies.put('jobcomments', job);
+          //console.log(savedJobs);
+     };
 });
